@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+
+import { RegistrationModule } from './registration/registration.module';
 import { NavbarModule } from './navbar/navbar.module';
 
 @NgModule({
@@ -10,6 +12,7 @@ import { NavbarModule } from './navbar/navbar.module';
   ],
   imports: [
     BrowserModule,
+    RegistrationModule,
     NavbarModule
   ],
   providers: [],
