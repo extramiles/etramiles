@@ -9,7 +9,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule
   ],
 
-  declarations: [RegisterComponent],
+    declarations: [RegisterComponent],
   exports: [RegisterComponent]
 })
 export class RegistrationModule { }
