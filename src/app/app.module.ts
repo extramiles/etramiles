@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 
 import { RegistrationModule } from './registration/registration.module';
 import { NavbarModule } from './navbar/navbar.module';
+import { HomeModule } from './home/home.module';
+import { AppRouterModule } from './app-router.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { NavbarModule } from './navbar/navbar.module';
   imports: [
     BrowserModule,
     RegistrationModule,
-    NavbarModule
+    NavbarModule,
+    HomeModule,
+    AppRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,20 +3,20 @@ import { NgForm } from '@angular/forms';
 import { FirebaseRegistrationService } from '../firebase-registration.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
   constructor(private fbrs: FirebaseRegistrationService) { }
 
   ngOnInit() {
   }
   onSubmit(form: NgForm) {
     let value = form.value;
-    this.fbrs.userRegistration(value.userid, value.password);
+    this.fbrs.userLogin(value.userid, value.password);
   }
   onClear(f) {
-  f.reset();
+    f.reset();
   }
 }
