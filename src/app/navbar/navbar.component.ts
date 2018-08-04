@@ -10,9 +10,5 @@ export class NavbarComponent implements OnInit {
   constructor() { }
   ngOnInit() {
   }
-  onClickOutside(event: Object) {
-    if (event && event['value'] === true) {
-      this.isOpen= false;
-    }
-  }
+
 }

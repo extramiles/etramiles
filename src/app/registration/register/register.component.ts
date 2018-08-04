@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { FirebaseRegistrationService } from '../firebase-registration.service';
 
 @Component({
   selector: 'app-register',
@@ -8,12 +9,12 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fbrs: FirebaseRegistrationService) { }
 
   ngOnInit() {
   }
   onSubmit(form: NgForm) {
     const value = form.value;
-    console.log(form);
+    this.fbrs.userRegistration(value.userid, value.password);
   }
 }
