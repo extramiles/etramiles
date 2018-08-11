@@ -16,4 +16,11 @@ export class DataService {
       .get('/testDataService')
       .map(result => (this.result = 'result.json().data'));
   }
+
+  testDataService1() {
+    console.log('data service works');
+    return this.httpClient
+      .get('/testDataService')
+      .map(result => (this.result = 'result.json().data'));
+  }
 }
