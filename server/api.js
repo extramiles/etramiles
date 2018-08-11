@@ -3,27 +3,20 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var mongoose = require('mongoose');
-var url = 'mongodb://localhost:27017/automationframework';
+var url = 'mongodb://localhost:27017/extramile';
 const JSON = require('circular-json');
-/*
-mongoose.connect(
-  'mongodb+srv://extramiles:extramiles@extramiles-lyryf.mongodb.net/test?retryWrites=true',
-  {
-    useMongoClient: true
-  }
-);
 
-*/
 const connection = closure => {
   return MongoClient.connect(
-    'mongodb+srv://extramiles:extramiles@extramiles-lyryf.mongodb.net/test?retryWrites=true',
+    url,
     (err, db) => {
       console.log('connected to database');
       if (err) {
         return console.log(err);
       }
       closure(db);
-    }
+    },
+    { useNewUrlParser: true }
   );
 };
 let response = {
@@ -37,12 +30,12 @@ var sendError = (err, res) => {
   response.message = typeof err == 'object' ? err.message : err;
   res.status(501).json(response);
 };
-/*
+
 router.get('/testDataService', (req, res) => {
   console.log('we are at server');
   connection(db => {
     //dbs.automation.collection("projects").find({}).toArray(function(err, proje)
-    db.collection('projects')
+    db.collection('users')
       .find()
       .toArray()
       .then(projects => {
@@ -106,5 +99,4 @@ router.post('/testcase', (req, res) => {
       });
   });
 });
-*/
 module.exports = router;
