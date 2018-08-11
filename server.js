@@ -9,7 +9,7 @@ var api = require('./server/api');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist/ExtraMiles')));
 
 app.use('/', api);
 
