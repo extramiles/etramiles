@@ -8,15 +8,14 @@ import { FirebaseRegistrationService } from '../firebase-registration.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  constructor(private fbrs: FirebaseRegistrationService) { }
+  constructor(private fbrs: FirebaseRegistrationService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   onSubmit(form: NgForm) {
     let value = form.value;
     this.fbrs.userRegistration(value.userid, value.password);
   }
   onClear(f) {
-  f.reset();
+    f.reset();
   }
 }
