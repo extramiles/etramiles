@@ -2,21 +2,20 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
-var mongoose = require('mongoose');
 var url = 'mongodb://localhost:27017/extramile';
 const JSON = require('circular-json');
 
 const connection = closure => {
   return MongoClient.connect(
-    url,
+    'mongodb://localhost:27017/extramile',
     (err, db) => {
-      console.log('connected to database');
       if (err) {
         return console.log(err);
+      } else {
+        console.log('connected to data base');
       }
       closure(db);
-    },
-    { useNewUrlParser: true }
+    }
   );
 };
 let response = {
@@ -32,48 +31,39 @@ var sendError = (err, res) => {
 };
 
 router.get('/testDataService', (req, res) => {
-  console.log('we are at server');
   connection(db => {
     //dbs.automation.collection("projects").find({}).toArray(function(err, proje)
     db.collection('users')
-      .find()
+      .find({})
       .toArray()
-      .then(projects => {
-        response.data = projects;
-        res.json(response);
-        console.log(projects);
+      .then(users => {
+        // response.data = users;
+        //.json(response);
+        console.log(users);
       });
   });
+  console.log('we are at server');
 });
 router.post('/tags', (req, res) => {
+  console.log(req.body);
   connection(db => {
-    console.log('on server :' + req);
-    console.log('Request Data: %j', req);
-
-    console.log(JSON.stringify(req, null, 2));
-    //dbs.automation.collection("projects").find({}).toArray(function(err, proje)
     db.collection('testcaseTags')
-      .find({ project: req.body.projectName })
+      .find({ project: req.body.project })
       .toArray()
       .then(projects => {
         response.data = projects;
         res.json(response);
-        console.log(JSON.stringify(projects, null, 2));
+        //  console.log(JSON.stringify(projects, null, 2));
       });
   });
 });
 
-router.post('/testcase', (req, res) => {
+router.post('/testcases', (req, res) => {
+  console.log(req.body);
   connection(db => {
-    console.log(req.body);
     db.collection('testcases')
       .find(
-        {
-          $and: [
-            { project: req.body.projectName1 },
-            { tag: req.body.testtags1 }
-          ]
-        },
+        { $and: [{ project: req.body.project }, { tag: req.body.tag }] },
         {
           _id: 0,
           tag: 0,
@@ -92,11 +82,22 @@ router.post('/testcase', (req, res) => {
         }
       )
       .toArray()
-      .then(testcases => {
-        response.data = testcases;
+      .then(projects => {
+        response.data = projects;
         res.json(response);
-        console.log(testcases);
+        //  console.log(JSON.stringify(projects, null, 2));
       });
   });
 });
+
+/*connection((db) => {
+   db.collection('students').find().toArray().then((students) =>{
+      response.data = students;
+      res.json(response);
+    })
+console.log("students");
+    //response.data = 'students';
+  //  res.json(response);
+}) */
+
 module.exports = router;
