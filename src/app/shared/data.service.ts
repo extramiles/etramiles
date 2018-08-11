@@ -17,10 +17,11 @@ export class DataService {
       .map(result => (this.result = 'result.json().data'));
   }
 
-  testDataService1() {
-    console.log('data service works');
-    return this.httpClient
-      .get('/testDataService')
-      .map(result => (this.result = 'result.json().data'));
+  registerUser(email: string, password: string) {
+    console.log('email');
+    return this.httpClient.post('/registration', {
+      userid: email,
+      password: password
+    });
   }
 }

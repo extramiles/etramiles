@@ -44,17 +44,24 @@ router.get('/testDataService', (req, res) => {
   });
   console.log('we are at server');
 });
-router.post('/tags', (req, res) => {
-  console.log(req.body);
+
+router.post('/registration', (req, res) => {
+  console.log('we are at server', req.body.userid);
   connection(db => {
-    db.collection('testcaseTags')
-      .find({ project: req.body.project })
-      .toArray()
-      .then(projects => {
-        response.data = projects;
-        res.json(response);
-        //  console.log(JSON.stringify(projects, null, 2));
-      });
+    db.collection('users').insert({
+      userid: req.body.userid,
+      password: req.body.password
+    });
+  });
+});
+
+router.post('/grgd', (req, res) => {
+  console.log(req);
+  connection(db => {
+    db.collection('users').insert({
+      userid: req.body.email,
+      password: req.body.password
+    });
   });
 });
 
