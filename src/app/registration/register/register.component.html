@@ -1,39 +1,126 @@
-<div class="container text-center" style="align-self:center;width:400px;padding-top:40px">
-  <div class="jumbotron" style="width:400px;position:center">
-      <div class="row">
-        <div class="col-xs-12">
-          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-            <div class="row">
-              <div class="col-sm-12 form-group">
-                <label for="userid">User Id</label>
-                <input type="email"
-                       id="userid"
-                       class="form-control"
-                       name="userid"
-                       ngModel
-                       required>
-              </div>
+<div class="container">
+  <form class="form-horizontal" role="form">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h2>Register New User</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem">
+              <i class="fa fa-user"></i>
             </div>
-            <br />
-            <div class="row">
-              <div class="col-sm-12 form-group">
-                <label for="password">Password</label>
-                <input type="password"
-                       id="password"
-                       class="form-control"
-                       name="password"
-                       ngModel
-                       required>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <button class="btn btn-success" type="submit">Register </button>&nbsp;
-                <button class="btn btn-primary" type="button" (click)="onClear(f)">Clear</button>
-              </div>
-            </div>
-          </form>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Rahul Kumar" required autofocus>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+          <span class="text-danger align-middle">
+            Please enter your full name !
+          </span>
         </div>
       </div>
     </div>
-  </div>
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="email">E-Mail Address</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem">
+              <i class="fa fa-at"></i>
+            </div>
+            <input type="text" name="email" class="form-control" id="email" placeholder="you@example.com" required autofocus>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+          <span class="text-danger align-middle">
+            Please enter a valid email address !
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="email">User Role</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem">
+              <i class="fa fa-at"></i>
+            </div>
+            <select name="userRole" id="userRole" class="form-control" required autofocus>
+              <option value="" selected>Select Role</option>
+              <option value="manager">Manager(Job Provider)</option>
+              <option value="associate">Associate(Job Seeker)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+          <span class="text-danger align-middle">
+            Please select a User Role !
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="password">Password</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group has-danger">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem">
+              <i class="fa fa-key"></i>
+            </div>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+          <span class="text-danger align-middle">
+            <i class="fa fa-close"> Please enter a password</i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="password">Confirm Password</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem">
+              <i class="fa fa-repeat"></i>
+            </div>
+            <input type="password" name="password-confirmation" class="form-control" id="password-confirm" placeholder="Password" required>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-success" style="float: right">
+          <i class="fa fa-user-plus"></i> Register</button>
+      </div>
+    </div>
+  </form>
+</div>
