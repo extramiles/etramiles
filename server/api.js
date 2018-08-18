@@ -55,16 +55,6 @@ router.post('/registration', (req, res) => {
   });
 });
 
-router.post('/grgd', (req, res) => {
-  console.log(req);
-  connection(db => {
-    db.collection('users').insert({
-      userid: req.body.email,
-      password: req.body.password
-    });
-  });
-});
-
 router.post('/testcases', (req, res) => {
   console.log(req.body);
   connection(db => {
@@ -96,15 +86,5 @@ router.post('/testcases', (req, res) => {
       });
   });
 });
-
-/*connection((db) => {
-   db.collection('students').find().toArray().then((students) =>{
-      response.data = students;
-      res.json(response);
-    })
-console.log("students");
-    //response.data = 'students';
-  //  res.json(response);
-}) */
 
 module.exports = router;
