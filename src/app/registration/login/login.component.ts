@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     let value = form.value;
     this.fbrs.userLogin(value.userid, value.password);
     console.log('login component');
-    this.dataService.testDataService().subscribe(() => {});
+    this.dataService.login(value.userid, value.password).subscribe(() => {});
   }
   onClear(f) {
     f.reset();

@@ -1,4 +1,6 @@
 var express = require('express');
+var bcrypt = require('bcrypt-nodejs');
+var jwt = require('jsonwebtoken');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
@@ -50,8 +52,30 @@ router.post('/registration', (req, res) => {
   connection(db => {
     db.collection('users').insert({
       userid: req.body.userid,
-      password: req.body.password
+      password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
     });
+  });
+});
+
+router.post('/login', (req, res) => {
+  connection(db => {
+    db.collection('users')
+      .find({ userid: req.body.userid })
+      .toArray()
+      .then(users => {
+        console.log(users[0].password);
+        if (bcrypt.compareSync(req.body.password, users[0].password)) {
+          var token = jwt.sign({ userid: users[0].userid }, 's3cr3t', {
+            expiresIn: 3600
+          });
+          response.data = { success: true, token: token };
+          res.json(response);
+          console.log('user is authenticated', token);
+        } else {
+          console.log('wrong password');
+        }
+        console.log(users);
+      });
   });
 });
 
